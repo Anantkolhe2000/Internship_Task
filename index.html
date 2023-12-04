@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 12pt;
+        }
+        th, td {
+            border: 1pt solid #D8D9DA;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #D6EFED;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h2>Table 1: Display the details of Employees with Designation= “Technical Writer”</h2>
+<table id="EmployeeTable1">
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Designation</th>
+            <th>Date of Joining</th>
+            <th>Address</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Anant Kolhe</td>
+            <td>Technical Writer</td>
+            <td>01-11-2023</td>
+            <td>Pune City</td>
+            <td>500000</td>
+        </tr>
+        <tr>
+            <td>Anant Kolhe</td>
+            <td>Software Developer</td>
+            <td>01-11-2023</td>
+            <td>Pune City</td>
+            <td>600000</td>
+        </tr>
+        <tr>
+            <td>Rohan</td>
+            <td>Technical Writer</td>
+            <td>01-11-2021</td>
+            <td>Pune City</td>
+            <td>800000</td>
+        </tr>
+    </tbody>
+</table>
+<h2>Table 2: Display the details of Employees with Salary greater than 5LPA and less than 7LPA</h2>
+<table id="EmployeeTable2">
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Designation</th>
+            <th>Date of Joining</th>
+            <th>Address</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Anant Kolhe</td>
+            <td>Technical Writer</td>
+            <td>01-11-2023</td>
+            <td>Pune City</td>
+            <td>500000</td>
+        </tr>
+        <tr>
+            <td>Rohan</td>
+            <td>Web Developer</td>
+            <td>01-11-2021</td>
+            <td>Pune City</td>
+            <td>600000</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Table 3: Display only Employee Name, Designation, and Date of Joining Details in Table</h2>
+<table id="EmployeeTable3">
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Designation</th>
+            <th>Date of Joining</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Anant Kolhe</td>
+            <td>Technical Writer</td>
+            <td>01-11-2023</td>
+        </tr>
+        <tr>
+            <td>Rohan</td>
+            <td>Application Developer</td>
+            <td>01-11-2021</td>
+        </tr>
+        <tr>
+            <td>Vikas</td>
+            <td>Software Developer</td>
+            <td>01-11-2021</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function displayTechnicalWriters() {
+            var rows = document.getElementById('EmployeeTable1').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var designation = rows[i].getElementsByTagName('td')[1].textContent;
+                if (designation === 'Technical Writer') {
+                    rows[i].style.display = 'table-row';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+        displayTechnicalWriters();
+
+        function displaySalaryInRange() {
+            var rows = document.getElementById('EmployeeTable2').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var salary = parseInt(rows[i].getElementsByTagName('td')[4].textContent);
+                if (salary > 500000 && salary < 700000) {
+                    rows[i].style.display = 'table-row';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+        displaySalaryInRange();
+
+        function displaySelectedDetails() {
+            var rows = document.getElementById('EmployeeTable3').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var name = rows[i].getElementsByTagName('td')[0].textContent;
+                var designation = rows[i].getElementsByTagName('td')[1].textContent;
+                var joiningDate = rows[i].getElementsByTagName('td')[2].textContent;
+
+                for (var j = 3; j < rows[i].getElementsByTagName('td').length; j++) {
+                    rows[i].getElementsByTagName('td')[j].style.display = 'none';
+                }
+                rows[i].innerHTML = '<td>' + name + '</td><td>' + designation + '</td><td>' + joiningDate + '</td>';
+            }
+        }
+        displaySelectedDetails();
+    });
+</script>
+
+</body>
+</html>
